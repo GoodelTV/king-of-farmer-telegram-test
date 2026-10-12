@@ -10,4 +10,4 @@ run_worker_first = ["/health", "/api/*", "/telegram/webhook"]
 [[d1_databases]]
 binding = "DB"
 database_name = "king-of-farmer-test-db"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "wrangler d1 create my-db-name"
