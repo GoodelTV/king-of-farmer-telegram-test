@@ -1,13 +1,15 @@
-name = "king-of-farmer-test"
+name = "king-of-farmer-telegram-test"
 main = "src/worker.js"
-compatibility_date = "2026-10-10"
+compatibility_date = "2026-10-14"
 
 [assets]
 directory = "./public"
 binding = "ASSETS"
-run_worker_first = ["/health", "/api/*", "/telegram/webhook"]
+run_worker_first = ["/health", "/api/*", "/telegram/webhook", "/admin/*"]
 
+# Replace the placeholder with the real D1 database ID from Cloudflare > D1 > king_test.
+# Keep binding name DB exactly as configured in the Worker dashboard.
 [[d1_databases]]
 binding = "DB"
 database_name = "king_test"
-database_id = "14406759-cc24-4232-93bc-8c70eeb18f86"
+database_id = "PASTE_REAL_D1_DATABASE_ID_HERE"
