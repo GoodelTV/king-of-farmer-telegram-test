@@ -13,3 +13,6 @@ run_worker_first = ["/health", "/api/*", "/telegram/webhook", "/admin/*"]
 binding = "DB"
 database_name = "king_test"
 database_id = "14406759-cc24-4232-93bc-8c70eeb18f86"
+[observability]
+enabled = true
+head_sampling_rate = 1
