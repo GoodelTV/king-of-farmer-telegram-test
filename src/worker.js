@@ -251,7 +251,11 @@ export default {
         }
         return fail(404,"Игровой API не найден.");
       }
-      return env.ASSETS.fetch(request);
+      return env.ASSETS.fetch(request);console.error("Worker request failed:", {
+  message: String(error?.message || error),
+  stack: String(error?.stack || ""),
+  path: new URL(request.url).pathname
+});
     } catch (error) {
       const status = Number(error?.status || 500);
       if (status >= 500) return fail(status,"Внутренняя ошибка сервера. Проверьте настройки Worker и D1.");
