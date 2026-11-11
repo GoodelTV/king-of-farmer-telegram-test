@@ -1,1 +1,31 @@
+name: Configure Telegram test webhook
 
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  configure-webhook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Register Telegram webhook on Cloudflare Worker
+        env:
+          SETUP_SECRET: ${{ secrets.SETUP_SECRET }}
+        run: |
+          if [ -z "$SETUP_SECRET" ]; then
+            echo "GitHub Actions secret SETUP_SECRET is missing."
+            exit 1
+          fi
+
+          response="$(curl --silent --show-error --fail-with-body \
+            --request POST \
+            --header "x-setup-secret: $SETUP_SECRET" \
+            --header "content-type: application/json" \
+            --data '{}' \
+            "https://king-of-farmer-telegram-test.alexdeli.workers.dev/admin/set-webhook")"
+
+          echo "$response"
+          echo "$response" | jq -e '.ok == true' >/dev/null
+          echo "Telegram webhook registration confirmed."
