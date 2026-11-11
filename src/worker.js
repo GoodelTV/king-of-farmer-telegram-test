@@ -261,5 +261,6 @@ export default {
     const status = Number(error?.status || 500);
     if (status >= 500) return fail(status, "Внутренняя ошибка сервера. Проверьте настройки Worker и D1.");
     return fail(status, error?.message || "Запрос не выполнен.");
+    }
   }
 };
